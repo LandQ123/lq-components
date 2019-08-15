@@ -1,7 +1,9 @@
 <template>
     <div class="home">
         <my-menu></my-menu>
-        <div class="container"></div>
+        <div class="container">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
@@ -22,11 +24,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-    padding-top: 20px;
     height: 100%;
     display: flex;
     .container {
         flex: 1;
+        padding: 20px;
+        color: #333;
     }
 }
 </style>

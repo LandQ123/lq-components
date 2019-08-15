@@ -1,1 +1,20 @@
-@import "./reset.scss"
+@import "./reset.scss";
+
+.tox-editor-container {
+    background: #eee !important;
+}
+
+.tox .tox-sidebar-wrap {
+    width: 960px;
+    position: relative;
+    margin: 20px auto;
+    border: 1px solid #dfe4e6;
+    border-bottom-color: #cdd0d2;
+    border-right-color: #cdd0d2;
+    border-radius: 2px;
+    height: 700px;
+    overflow: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}

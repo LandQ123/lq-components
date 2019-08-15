@@ -1,27 +1,41 @@
 <template>
     <div class="my-menu">
         <el-menu
-            default-active="2"
+            :default-active="this.$route.path"
+            router
             class="el-menu-vertical-demo"
             @open="handleOpen"
         >
-            <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
-            </el-menu-item>
+            <el-submenu index="1">
+                <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span>js-tips</span>
+                </template>
+                <el-menu-item index="/debounce">防抖</el-menu-item>
+                <el-menu-item index="/throttle">节流</el-menu-item>
+                <el-menu-item index="/dfs">深度遍历</el-menu-item>
+                <el-menu-item index="/flatArr">数组扁平化</el-menu-item>
+            </el-submenu>
+            <el-submenu index="2">
+                <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span>组件</span>
+                </template>
+                <el-menu-item index="/ckeditor">ckeditor编辑器</el-menu-item>
+                <el-menu-item index="/tinymce">tinymce编辑器</el-menu-item>
+            </el-submenu>
         </el-menu>
     </div>
 </template>
 
 <script>
+import { sessionStore } from '@/utils';
 export default {
     name: 'my-menu',
     methods: {
-        handleOpen() {}
+        handleOpen(key, keyPath) {
+            console.log(key);
+        }
     }
 };
 </script>
@@ -29,6 +43,7 @@ export default {
 .my-menu {
     width: 180px;
     background: rgb(233, 230, 230);
+    overflow: hidden;
     .el-menu {
         border-right: none;
     }
