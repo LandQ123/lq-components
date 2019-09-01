@@ -15,6 +15,7 @@
                 <el-menu-item index="/throttle">节流</el-menu-item>
                 <el-menu-item index="/dfs">深度遍历</el-menu-item>
                 <el-menu-item index="/flatArr">数组扁平化</el-menu-item>
+                <el-menu-item index="/axios">axios测试</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
                 <template slot="title">

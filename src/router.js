@@ -1,13 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/views/home.vue";
-
-import Debounce from "@/views/debounce";
-import Throttle from "@/views/throttle";
-import DFS from "@/views/DFS";
-import FlatArr from "@/views/arrFlat";
-import Ckeditor from "@/views/ckeditor/index";
-import Tinymce from "@/views/tinymce/index";
 
 Vue.use(Router);
 
@@ -17,12 +9,12 @@ export default new Router({
   routes: [{
     path: "/",
     name: "home",
-    component: Home,
+    component: () => import('@/views/home'),
     redirect: '/debounce',
     children: [{
         path: '/debounce',
         name: 'debounce',
-        component: Debounce,
+        component: () => import('@/views/debounce'),
         meta: {
           name: '防抖'
         }
@@ -30,7 +22,7 @@ export default new Router({
       {
         path: '/throttle',
         name: 'throttle',
-        component: Throttle,
+        component: () => import('@/views/throttle'),
         meta: {
           name: '节流'
         }
@@ -38,7 +30,7 @@ export default new Router({
       {
         path: '/dfs',
         name: 'dfs',
-        component: DFS,
+        component: () => import('@/views/DFS'),
         meta: {
           name: '深度遍历'
         }
@@ -46,7 +38,7 @@ export default new Router({
       {
         path: '/flatArr',
         name: 'FlatArr',
-        component: FlatArr,
+        component: () => import('@/views/arrFlat'),
         meta: {
           name: '数组扁平化'
         }
@@ -54,15 +46,23 @@ export default new Router({
       {
         path: '/ckeditor',
         name: 'ckeditor',
-        component: Ckeditor,
+        component: () => import('@/views/ckeditor/index'),
         meta: {
           name: 'ckeditor编辑器'
         }
       },
       {
+        path: '/axios',
+        name: 'axios',
+        component: () => import('@/views/axios'),
+        meta: {
+          name: 'axios测试'
+        }
+      },
+      {
         path: '/tinymce',
         name: 'tinymce',
-        component: Tinymce,
+        component: () => import('@/views/tinymce/index'),
         meta: {
           name: 'tinymce'
         }
