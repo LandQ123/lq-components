@@ -11,11 +11,12 @@
                     <i class="el-icon-location"></i>
                     <span>js-tips</span>
                 </template>
-                <el-menu-item index="/debounce">防抖</el-menu-item>
-                <el-menu-item index="/throttle">节流</el-menu-item>
-                <el-menu-item index="/dfs">深度遍历</el-menu-item>
-                <el-menu-item index="/flatArr">数组扁平化</el-menu-item>
-                <el-menu-item index="/axios">axios测试</el-menu-item>
+                <el-menu-item
+                    v-for="(item, index) in menus"
+                    :key="index"
+                    :index="item.router"
+                    >{{ item.title }}</el-menu-item
+                >
             </el-submenu>
             <el-submenu index="2">
                 <template slot="title">
@@ -31,8 +32,14 @@
 
 <script>
 import { sessionStore } from '@/utils';
+import menus from './menuConfig/menu';
 export default {
     name: 'my-menu',
+    data() {
+        return {
+            menus: menus
+        };
+    },
     methods: {
         handleOpen(key, keyPath) {
             console.log(key);

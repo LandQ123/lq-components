@@ -9,6 +9,15 @@
             编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组
         </p>
         <el-button type="primary" size="medium" @click="go">go</el-button>
+        <div>
+            this.newArr1 = Array.from(new Set(arr.flat(Infinity))).sort( (a, b)
+            => { return a - b; } );
+        </div>
+        <el-button type="primary" size="medium" @click="go2">go2</el-button>
+        <div>
+            this.newArr1 = Array.from(new Set(arr.flat(Infinity))).sort( (a, b)
+            => { return a - b; } );
+        </div>
         <el-button type="primary" size="medium" @click="go1">go1</el-button>
         <p>
             <strong>{{ newArr }}</strong>
@@ -45,6 +54,22 @@ export default {
                 (a, b) => {
                     return a - b;
                 }
+            );
+        },
+        go2() {
+            let arr = [
+                [1, 2, 2],
+                [3, 4, 5, 5],
+                [6, 7, 8, 9, [11, 12, [12, 13, [14]]]],
+                10
+            ];
+            this.newArr1 = Array.from(
+                new Set(
+                    arr
+                        .toString()
+                        .split(',')
+                        .sort((a, b) => a - b)
+                )
             );
         },
         go() {
