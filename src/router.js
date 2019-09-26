@@ -92,6 +92,14 @@ export default new Router({
         }
       },
       {
+        path: '/reset-message',
+        name: '重写message',
+        component: () => import('@/views/resetMessage'),
+        meta: {
+          name: '重写message'
+        }
+      },
+      {
         path: '/tinymce',
         name: 'tinymce',
         component: () => import('@/views/tinymce/index'),

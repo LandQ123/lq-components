@@ -34,5 +34,9 @@
          router: '/css-tips',
          title: 'css小技巧'
      },
+     {
+         router: '/reset-message',
+         title: '重写message'
+     },
  ]
  export default menu;
