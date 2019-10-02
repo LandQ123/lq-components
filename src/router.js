@@ -100,6 +100,35 @@ export default new Router({
         }
       },
       {
+        path: '/jspdf',
+        name: '生成pdf',
+        component: () => import('@/views/jspdf'),
+        meta: {
+          name: '生成pdf'
+        }
+      },
+      {
+        path: '/clipboard',
+        component: () => import('@/views/clipboard'),
+        meta: {
+          name: '复制粘贴'
+        }
+      },
+      {
+        path: '/autosize',
+        component: () => import('@/views/autosize'),
+        meta: {
+          name: '高度自适应文字'
+        }
+      },
+      {
+        path: '/progressbar',
+        component: () => import('@/views/progressbar'),
+        meta: {
+          name: '进度条'
+        }
+      },
+      {
         path: '/tinymce',
         name: 'tinymce',
         component: () => import('@/views/tinymce/index'),

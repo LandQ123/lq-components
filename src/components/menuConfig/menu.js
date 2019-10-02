@@ -38,5 +38,21 @@
          router: '/reset-message',
          title: '重写message'
      },
+     {
+         router: '/jspdf',
+         title: '生成pdf'
+     },
+     {
+         router: '/clipboard',
+         title: '复制粘贴'
+     },
+     {
+         router: '/autosize',
+         title: '高度自适应文字'
+     },
+     {
+         router: '/progressbar',
+         title: '进度条'
+     },
  ]
  export default menu;
