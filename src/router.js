@@ -129,6 +129,34 @@ export default new Router({
         }
       },
       {
+        path: '/qriously',
+        component: () => import('@/views/qriously'),
+        meta: {
+          name: '二维码生成'
+        }
+      },
+      {
+        path: '/extend',
+        component: () => import('@/views/vue-extend'),
+        meta: {
+          name: 'extend写message'
+        }
+      },
+      {
+        path: '/authorized',
+        component: () => import('@/views/authorized'),
+        meta: {
+          name: '权限渲染'
+        }
+      },
+      {
+        path: '/excel',
+        component: () => import('@/views/excel'),
+        meta: {
+          name: 'excel'
+        }
+      },
+      {
         path: '/tinymce',
         name: 'tinymce',
         component: () => import('@/views/tinymce/index'),

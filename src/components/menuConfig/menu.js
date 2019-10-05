@@ -1,4 +1,4 @@
- const menu = [{
+ const tipsMenu = [{
          router: '/debounce',
          title: '防抖'
      },
@@ -27,6 +27,23 @@
          title: '数组排序'
      },
      {
+         router: '/css-tips',
+         title: 'css小技巧'
+     },
+     {
+         router: '/reset-message',
+         title: '重写message'
+     },
+     {
+         router: '/extend',
+         title: 'extend写message'
+     },
+     {
+         router: '/authorized',
+         title: '权限渲染'
+     },
+ ]
+ const toolsMenu = [{
          router: '/js-zip',
          title: '下载压缩包'
      },
@@ -54,5 +71,16 @@
          router: '/progressbar',
          title: '进度条'
      },
+     {
+         router: '/qriously',
+         title: '二维码生成'
+     },
+     {
+         router: '/excel',
+         title: 'excel相关'
+     },
  ]
- export default menu;
+ export const menus = {
+     tipsMenu,
+     toolsMenu
+ };

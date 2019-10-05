@@ -13,13 +13,25 @@
                         <span>js-tips</span>
                     </template>
                     <el-menu-item
-                        v-for="(item, index) in menus"
+                        v-for="(item, index) in menus.tipsMenu"
                         :key="index"
                         :index="item.router"
                         >{{ item.title }}</el-menu-item
                     >
                 </el-submenu>
                 <el-submenu index="2">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>js-tools</span>
+                    </template>
+                    <el-menu-item
+                        v-for="(item, index) in menus.toolsMenu"
+                        :key="index"
+                        :index="item.router"
+                        >{{ item.title }}</el-menu-item
+                    >
+                </el-submenu>
+                <el-submenu index="3">
                     <template slot="title">
                         <i class="el-icon-location"></i>
                         <span>组件</span>
@@ -36,7 +48,7 @@
 
 <script>
 import { sessionStore } from '@/utils';
-import menus from './menuConfig/menu';
+import { menus } from './menuConfig/menu';
 export default {
     name: 'my-menu',
     data() {

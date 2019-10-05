@@ -9,9 +9,16 @@ import {
   message
 } from '@/utils/resetMessage';
 import 'element-ui/lib/theme-chalk/index.css';
+import VueQriously from 'vue-qriously'
+import VueQrcode from '@chenfengyuan/vue-qrcode';
+import diyMessage from '@/components/message'; // extentd写message
+import diyAlert from '@/components/alert/alert'; // extentd写alert
+import Authorized from '@/components/authorized'; // 权限
 
 Vue.config.productionTip = false;
-Vue.use(ElementUI)
+Vue.use(ElementUI).use(VueQriously).use(diyMessage).use(diyAlert);
+Vue.component('vue-qrcode', VueQrcode);
+Vue.component('Authorized', Authorized);
 Vue.prototype.$message = message;
 
 new Vue({
