@@ -42,6 +42,10 @@
          router: '/authorized',
          title: '权限渲染'
      },
+     {
+         router: '/directive',
+         title: '自定义指令'
+     },
  ]
  const toolsMenu = [{
          router: '/js-zip',
@@ -78,6 +82,10 @@
      {
          router: '/excel',
          title: 'excel相关'
+     },
+     {
+         router: '/sortable',
+         title: '多选框拖拽排序'
      },
  ]
  export const menus = {

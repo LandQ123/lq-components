@@ -150,10 +150,24 @@ export default new Router({
         }
       },
       {
+        path: '/directive',
+        component: () => import('@/views/directive'),
+        meta: {
+          name: '自定义指令'
+        }
+      },
+      {
         path: '/excel',
         component: () => import('@/views/excel'),
         meta: {
           name: 'excel'
+        }
+      },
+      {
+        path: '/sortable',
+        component: () => import('@/views/sortable'),
+        meta: {
+          name: 'sortable'
         }
       },
       {
