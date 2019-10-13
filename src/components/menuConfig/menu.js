@@ -46,19 +46,13 @@
          router: '/directive',
          title: '自定义指令'
      },
+
  ]
  const toolsMenu = [{
          router: '/js-zip',
          title: '下载压缩包'
      },
-     {
-         router: '/css-tips',
-         title: 'css小技巧'
-     },
-     {
-         router: '/reset-message',
-         title: '重写message'
-     },
+
      {
          router: '/jspdf',
          title: '生成pdf'
@@ -86,6 +80,10 @@
      {
          router: '/sortable',
          title: '多选框拖拽排序'
+     },
+     {
+         router: '/vue-draggable-resizable',
+         title: '拖拽'
      },
  ]
  export const menus = {

@@ -177,6 +177,13 @@ export default new Router({
         meta: {
           name: 'tinymce'
         }
+      },
+      {
+        path: '/vue-draggable-resizable',
+        component: () => import('@/views/vue-draggable-resizable'),
+        meta: {
+          name: 'vue-draggable-resizable'
+        }
       }
     ]
   }]

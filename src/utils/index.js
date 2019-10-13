@@ -543,3 +543,22 @@ export const dataURLtoBlob = (dataurl) => {
     type: mime
   });
 }
+/**字号和px转换 */
+export const wordFontSizeToPx = (font) => {
+  const fontMap = {
+    0: 58,
+    1: 48,
+    2: 35,
+    3: 32,
+    4: 29,
+    5: 24,
+    6: 22,
+    7: 20,
+    8: 18,
+    9: 16,
+    10: 14,
+    11: 12
+  }
+  console.log(font)
+  return fontMap[font]
+}

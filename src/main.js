@@ -9,6 +9,7 @@ import {
   message
 } from '@/utils/resetMessage';
 import 'element-ui/lib/theme-chalk/index.css';
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css';
 import VueQriously from 'vue-qriously'
 import VueQrcode from '@chenfengyuan/vue-qrcode';
 import diyMessage from '@/components/message'; // extentd写message

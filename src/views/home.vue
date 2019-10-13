@@ -30,6 +30,7 @@ export default {
         flex: 1;
         padding: 20px;
         color: #333;
+        position: relative;
     }
 }
 </style>
