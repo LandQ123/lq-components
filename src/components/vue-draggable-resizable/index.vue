@@ -87,7 +87,7 @@ export default {
         },
         customId: {
             // 自定义id，用于区分不同的实例
-            type: String,
+            type: [String, Number],
             default: ''
         },
         classNameDragging: {
@@ -367,9 +367,15 @@ export default {
             this.elementDown(e);
         },
         elementDown(e) {
-            const target = e.target || e.srcElement;
-
-            if (this.$el.contains(target)) {
+            const target = e ? e.target || e.srcElement : '';
+            const classNameArr = target.className
+                ? target.className.split(' ')
+                : [];
+            // 被点击元素不是关闭按钮
+            if (classNameArr.includes('close')) {
+                return;
+            }
+            if (e && this.$el.contains(target)) {
                 if (this.onDragStart && this.onDragStart(e) === false) {
                     return;
                 }
@@ -423,6 +429,17 @@ export default {
                     eventsFor.stop,
                     this.handleUp
                 );
+            } else {
+                // 用于父组件直接调用
+                if (!this.enabled) {
+                    // console.log(666);
+                    this.enabled = true;
+                    this.$emit('activated', this.customId);
+                    this.$emit('update:active', true);
+                    if (this.draggable) {
+                        this.dragging = true;
+                    }
+                }
             }
         },
         calcDragLimits() {

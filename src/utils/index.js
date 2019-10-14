@@ -559,6 +559,5 @@ export const wordFontSizeToPx = (font) => {
     10: 14,
     11: 12
   }
-  console.log(font)
   return fontMap[font]
 }

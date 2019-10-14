@@ -1,10 +1,48 @@
 <!-- drag-test -->
 <template>
     <div class="drag-test">
+        <div class="controls-list">
+            <div
+                :class="commonClassName"
+                class="controls-item controls-text"
+                @click="addControl(1)"
+            >
+                文本
+            </div>
+            <div
+                :class="commonClassName"
+                class="controls-item controls-date"
+                @click="addControl(2)"
+            >
+                签章
+            </div>
+            <div
+                :class="commonClassName"
+                class="controls-item controls-select"
+                @click="addControl(3)"
+            >
+                签名
+            </div>
+            <div
+                :class="commonClassName"
+                class="controls-item controls-sign"
+                @click="addControl(4)"
+            >
+                选项
+            </div>
+            <div
+                :class="commonClassName"
+                class="controls-item controls-seal"
+                @click="addControl(5)"
+            >
+                日期
+            </div>
+        </div>
         <div class="drag-wrap">
             <vue-draggable-resizable
                 v-for="(item, index) in controlsArr"
-                :key="index"
+                :key="item.customId"
+                :ref="item.customId"
                 :custom-id="item.customId"
                 :h="item.fontsSize | filterFonstSizeToHeight(item)"
                 :w="item.width"
@@ -26,39 +64,61 @@
                     {{ filterSignatory(item.signatory)
                     }}<span class="name">({{ item.name }})</span>
                 </div>
+                <i
+                    class="close el-icon-error"
+                    @click="removeControl(item.customId)"
+                ></i>
                 <div class="seal-inner" :class="commonClassName">
                     <div class="seal" :class="commonClassName"></div>
                 </div>
             </vue-draggable-resizable>
         </div>
         <div class="set-wrap">
-            <el-input v-model="textVal" @change="textChange"></el-input>
-            <el-select
-                v-model="fontSizeValue"
-                @change="selectFontsize"
-                placeholder="请选择"
+            <div class="control-set-item">
+                <p class="title">文本设置</p>
+                <el-input
+                    size="mini"
+                    v-model="textVal"
+                    @change="textChange"
+                ></el-input>
+            </div>
+            <div
+                class="control-set-item"
+                v-if="['text', 'date', 'select'].includes(activedType)"
             >
-                <el-option
-                    v-for="item in fontSizeOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
+                <p class="title">字体设置</p>
+                <el-select
+                    size="mini"
+                    v-model="fontSizeValue"
+                    @change="selectFontsize"
+                    placeholder="请选择"
                 >
-                </el-option>
-            </el-select>
-            <el-select
-                v-model="signatory"
-                @change="selectSignatory"
-                placeholder="请选择"
-            >
-                <el-option
-                    v-for="item in signatoryOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
+                    <el-option
+                        v-for="item in fontSizeOptions"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="control-set-item">
+                <p class="title">签署人设置</p>
+                <el-select
+                    size="mini"
+                    v-model="signatory"
+                    @change="selectSignatory"
+                    placeholder="请选择"
                 >
-                </el-option>
-            </el-select>
+                    <el-option
+                        v-for="item in signatoryOptions"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
+            </div>
         </div>
     </div>
 </template>
@@ -72,78 +132,11 @@ export default {
     data() {
         return {
             activedId: '', // 编辑实例的id
-            commonClassName: 'target', // 确保点击其它非控件元素时，已激活的控件不失去焦点
+            activedType: '', // 编辑实例的类型
+            commonClassName: 'target', // 确保点击其它非控件元素时，已激活的控件不失去焦点,作为单选高亮判定标准
             activedClass: 'lq-active-class',
             controlsArr: [
                 // 所有控件数组
-                {
-                    customId: '111111',
-                    width: 200,
-                    height: 30,
-                    x: 300,
-                    y: 40,
-                    className: 'lq-draggable-text',
-                    type: 'text', // 控件类型
-                    handles: ['mr'],
-                    name: '文本框',
-                    fontsSize: 10,
-                    signatory: 0 // 签署方默认甲方
-                },
-                {
-                    customId: '22222',
-                    width: 200,
-                    height: 30,
-                    x: 0,
-                    y: 40,
-                    type: 'text', // 控件类型
-                    name: '文本框',
-                    fontsSize: 10,
-                    signatory: 0 // 签署方默认甲方
-                },
-                {
-                    customId: '33333',
-                    width: 80,
-                    height: 80,
-                    x: 0,
-                    y: 140,
-                    type: 'seal', // 控件类型
-                    name: '印章',
-                    fontsSize: 10,
-                    signatory: 0 // 签署方默认甲方
-                },
-                {
-                    customId: '44444',
-                    width: 80,
-                    height: 40,
-                    x: 0,
-                    y: 260,
-                    type: 'sign', // 控件类型
-                    name: '签名',
-                    fontsSize: 10,
-                    signatory: 0 // 签署方默认甲方
-                },
-                {
-                    customId: '55555',
-                    width: 80,
-                    height: 30,
-                    x: 0,
-                    y: 380,
-                    type: 'date', // 控件类型
-                    name: '日期',
-                    fontsSize: 10,
-                    signatory: 0 // 签署方默认甲方
-                },
-                {
-                    customId: '66666',
-                    width: 80,
-                    height: 30,
-                    x: 200,
-                    y: 380,
-                    type: 'select', // 控件类型
-                    name: '选项',
-                    fontsSize: 10,
-                    signatory: 0 // 签署方默认甲方
-                }
             ],
             fontSizeOptions: [
                 {
@@ -278,14 +271,11 @@ export default {
             this.activedId && this.setVal(this.textVal);
             this.activedId = customId;
             let editIndex = this.getEditIndex();
+            this.activedType = this.controlsArr[editIndex].type;
             this.textVal = this.controlsArr[editIndex].name; // 设置文本名称
             this.signatory = this.controlsArr[editIndex].signatory; // 设置签署方
             // 设置签字号
-            if (
-                ['text', 'date', 'select'].includes(
-                    this.controlsArr[editIndex].type
-                )
-            ) {
+            if (['text', 'date', 'select'].includes(this.activedType)) {
                 this.fontSizeValue = this.controlsArr[editIndex].fontsSize;
             } else {
                 this.fontSizeValue = 10;
@@ -322,6 +312,86 @@ export default {
             return findIndex(this.controlsArr, o => {
                 return o.customId === this.activedId;
             });
+        },
+        // 添加控件
+        addControl(type) {
+            const controlObjMap = {
+                1: {
+                    customId: Date.now(),
+                    width: 200,
+                    height: 30,
+                    x: 300,
+                    y: 40,
+                    className: 'lq-draggable-text',
+                    type: 'text', // 控件类型
+                    handles: ['mr'],
+                    name: '文本框',
+                    fontsSize: 10,
+                    signatory: 0 // 签署方默认甲方
+                },
+                2: {
+                    customId: Date.now(),
+                    width: 80,
+                    height: 80,
+                    x: 0,
+                    y: 140,
+                    type: 'seal', // 控件类型
+                    name: '印章',
+                    signatory: 0 // 签署方默认甲方
+                },
+                3: {
+                    customId: Date.now(),
+                    width: 80,
+                    height: 40,
+                    x: 0,
+                    y: 260,
+                    type: 'sign', // 控件类型
+                    name: '签名',
+                    signatory: 0 // 签署方默认甲方
+                },
+                4: {
+                    customId: Date.now(),
+                    width: 80,
+                    height: 30,
+                    x: 0,
+                    y: 380,
+                    type: 'date', // 控件类型
+                    name: '日期',
+                    fontsSize: 10,
+                    signatory: 0 // 签署方默认甲方
+                },
+                5: {
+                    customId: Date.now(),
+                    width: 80,
+                    height: 30,
+                    x: 200,
+                    y: 380,
+                    type: 'select', // 控件类型
+                    name: '选项',
+                    fontsSize: 10,
+                    signatory: 0 // 签署方默认甲方
+                }
+            };
+            this.controlsArr.push(controlObjMap[type]);
+            this.setControlActive(controlObjMap[type].customId);
+        },
+        // 手动设置刚才添加的控件为选中状态
+        setControlActive(customId) {
+            this.$nextTick(() => {
+                // console.log(this.$refs[customId][0]);
+                this.$refs[customId][0].elementDown();
+            });
+        },
+        removeControl(customId) {
+            let editIndex = findIndex(this.controlsArr, o => {
+                return o.customId === customId;
+            });
+            this.controlsArr.splice(editIndex, 1);
+            this.activedId = '';
+            this.activedType = '';
+            this.textVal = '文本'; // 设置文本名称
+            this.signatory = 0; // 设置签署方
+            this.fontSizeValue = 10;
         }
     }
 };
@@ -330,10 +400,30 @@ export default {
 //@import url(); 引入公共css类
 .drag-test {
     display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    .controls-list {
+        width: 220px;
+        padding: 0 10px;
+        border-right: solid 1px rgb(105, 103, 103);
+        margin-right: 10px;
+        .controls-item {
+            height: 30px;
+            border: solid 1px #ccc;
+            margin-bottom: 20px;
+            cursor: pointer;
+            line-height: 30px;
+            text-align: center;
+        }
+    }
 }
 .drag-wrap {
-    width: 800px;
-    height: 600px;
+    width: 594px;
+    height: 100%;
     border: solid 1px #ccc;
     position: relative;
     .draggable {
@@ -347,9 +437,18 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        position: relative;
         .name {
             font-size: 12px;
         }
+    }
+    .el-icon-error {
+        font-size: 16px;
+        position: absolute;
+        top: -20px;
+        right: -10px;
+        z-index: 100;
+        cursor: pointer;
     }
 
     .lq-draggable-text,
@@ -379,6 +478,18 @@ export default {
             .seal {
                 border-color: rgb(14, 74, 238);
             }
+        }
+    }
+}
+.set-wrap {
+    width: 230px;
+    padding: 0 10px;
+    border-left: solid 1px rgb(105, 103, 103);
+    .control-set-item {
+        margin-bottom: 20px;
+        .title {
+            margin-bottom: 5px;
+            font-size: 14px;
         }
     }
 }
