@@ -367,11 +367,12 @@ export default {
             this.elementDown(e);
         },
         elementDown(e) {
+            // 没有e则是外部调用方式
             const target = e ? e.target || e.srcElement : '';
             const classNameArr = target.className
                 ? target.className.split(' ')
                 : [];
-            // 被点击元素不是关闭按钮
+            // 被点击元素是关闭按钮
             if (classNameArr.includes('close')) {
                 return;
             }
@@ -379,7 +380,6 @@ export default {
                 if (this.onDragStart && this.onDragStart(e) === false) {
                     return;
                 }
-
                 if (
                     (this.dragHandle &&
                         !matchesSelectorToParentElements(
@@ -396,17 +396,14 @@ export default {
                 ) {
                     return;
                 }
-
                 if (!this.enabled) {
                     this.enabled = true;
                     this.$emit('activated', this.customId);
                     this.$emit('update:active', true);
                 }
-
                 if (this.draggable) {
                     this.dragging = true;
                 }
-
                 this.mouseClickPosition.mouseX = e.touches
                     ? e.touches[0].pageX
                     : e.pageX;
@@ -418,11 +415,9 @@ export default {
                 this.mouseClickPosition.right = this.right;
                 this.mouseClickPosition.top = this.top;
                 this.mouseClickPosition.bottom = this.bottom;
-
                 if (this.parent) {
                     this.bounds = this.calcDragLimits();
                 }
-
                 addEvent(document.documentElement, eventsFor.move, this.move);
                 addEvent(
                     document.documentElement,
