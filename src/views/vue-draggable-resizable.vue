@@ -4,10 +4,24 @@
         <div class="controls-list">
             <div
                 :class="commonClassName"
-                class="controls-item controls-text"
                 @click="addControl(1)"
+                class="controls-item controls-text"
             >
-                文本
+                <p>
+                    文本
+                </p>
+                <!-- <vue-draggable-resizable
+                    ref="textControl"
+                    :h="30"
+                    :w="120"
+                    :x="controlTxtPos.x"
+                    :y="controlTxtPos.y"
+                    :z="999"
+                    class-name-dragging="lq-dragging-class"
+                    :handles="[]"
+                    @dragstop="onTextDragStop"
+                >
+                </vue-draggable-resizable> -->
             </div>
             <div
                 :class="commonClassName"
@@ -191,7 +205,12 @@ export default {
             signatoryOptions: [],
             textVal: '',
             fontSizeValue: 10, // 默认5号 14px
-            signatory: 0 // 默认甲方
+            signatory: 0, // 默认甲方
+            minLeft: 0, // 添加控件时拖拽的左边界
+            controlTxtPos: {
+                x: 60,
+                y: 0
+            }
         };
     },
     filters: {
@@ -262,8 +281,29 @@ export default {
             }
         ];
     },
+    mounted() {
+        this.getDomData();
+    },
     //方法集合
     methods: {
+        // 计算距离
+        getDomData() {
+            let domCtrList = document.getElementsByClassName(
+                'controls-list'
+            )[0];
+            let domFile = document.getElementsByClassName('drag-wrap')[0];
+            console.log(domFile.offsetLeft);
+            this.minLeft = domFile.offsetLeft;
+        },
+        onTextDragStop(left, top) {
+            console.log(left, top);
+            if (left >= this.minLeft) {
+                // 拖拽控件到了文件区域
+                this.addControl(1, left - this.minLeft, top);
+            }
+            this.$refs.textControl.setPosByHands(left, top);
+            console.log(this.controlTxtPos);
+        },
         // 点击控件
         onActivated(customId) {
             // console.log(customId);
@@ -314,14 +354,14 @@ export default {
             });
         },
         // 添加控件
-        addControl(type) {
+        addControl(type, x, y) {
             const controlObjMap = {
                 1: {
                     customId: Date.now(),
                     width: 200,
                     height: 30,
-                    x: 300,
-                    y: 40,
+                    x: x,
+                    y: y,
                     className: 'lq-draggable-text',
                     type: 'text', // 控件类型
                     handles: ['mr'],
@@ -492,6 +532,9 @@ export default {
             font-size: 14px;
         }
     }
+}
+.lq-dragging-class {
+    border: dashed 1px #000;
 }
 </style>
 <style lang="scss">

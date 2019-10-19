@@ -311,6 +311,15 @@ export default {
     },
 
     methods: {
+        /**手动设置位置 */
+        setPosByHands(left, top) {
+            let _self = this;
+            setTimeout(() => {
+                _self.left = left;
+                _self.rawLeft = left;
+            }, 2000);
+            // console.log(this.style);
+        },
         resetBoundsAndMouseState() {
             this.mouseClickPosition = {
                 mouseX: 0,
@@ -706,6 +715,8 @@ export default {
             this.rawBottom = mouseClickPosition.bottom + deltaY;
             this.rawLeft = mouseClickPosition.left - deltaX;
             this.rawRight = mouseClickPosition.right + deltaX;
+            // console.log(this.left, this.top);
+            // console.log(this.rawLeft, this.rawTop);
 
             this.$emit('dragging', this.left, this.top);
         },
@@ -787,6 +798,7 @@ export default {
     },
     computed: {
         style() {
+            console.log(this.left);
             return {
                 position: 'absolute',
                 top: this.top + 'px',
@@ -846,6 +858,7 @@ export default {
             }
         },
         rawLeft(newLeft) {
+            console.log('newLeft' + newLeft);
             const bounds = this.bounds;
             const aspectFactor = this.aspectFactor;
             const lockAspectRatio = this.lockAspectRatio;
