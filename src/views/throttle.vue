@@ -36,6 +36,15 @@ export default {
                 _self.num++;
                 _self.canGo = true;
             }, 1000);
+        },
+        test() {
+            function printVegetablesWithQuantity(color) {
+                const fruitMap = new Map()
+                    .set('red', ['apple'])
+                    .set('yellow', ['banana'])
+                    .set('purple', ['plum']);
+                return fruitMap.get(color) || [];
+            }
         }
     }
 };

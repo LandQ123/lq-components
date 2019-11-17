@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
 import "@/assets/styles/common.scss";
+import '@/service/rest-api';
 import ElementUI from 'element-ui';
 import {
   message

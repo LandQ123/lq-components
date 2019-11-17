@@ -543,6 +543,17 @@ export const dataURLtoBlob = (dataurl) => {
     type: mime
   });
 }
+/**blob转base64 */
+export const blobtoUrl = (blob) => {
+  return new Promise((resolve) => {
+    let fileReader = new FileReader();
+    fileReader.onload = function (e) {
+      let base64 = e.target.result;
+      resolve(base64);
+    }
+    fileReader.readAsDataURL(blob);
+  });
+}
 /**字号和px转换 */
 export const wordFontSizeToPx = (font) => {
   const fontMap = {

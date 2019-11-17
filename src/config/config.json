@@ -1,0 +1,11 @@
+{
+  "development": {
+    "apiOrigin": "http://shop.web.dev.ttyun.com"
+  },
+  "test": {
+    "apiOrigin": "http://o.fx.test.ttyun.com"
+  },
+  "production": {
+    "apiOrigin": "http://o.fx.ttyun.com"
+  }
+}
