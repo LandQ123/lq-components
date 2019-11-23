@@ -2,7 +2,9 @@
     <div class="home">
         <my-menu></my-menu>
         <div class="container">
-            <router-view></router-view>
+            <el-scrollbar>
+                <router-view></router-view>
+            </el-scrollbar>
         </div>
     </div>
 </template>
@@ -31,6 +33,10 @@ export default {
         padding: 20px;
         color: #333;
         position: relative;
+        .el-scrollbar,
+        .el-scrollbar__wrap {
+            height: 100%;
+        }
     }
 }
 </style>

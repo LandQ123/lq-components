@@ -46,6 +46,37 @@ axios.interceptors.response.use(
 );
 
 let createAxios = (baseURL, url) => {
+  function commonPostFormData(url, formData, token) {
+    return axios.post(
+      url,
+      formData, {
+        headers: {
+          token: token,
+          "content-type": 'application/x-www-form-urlencoded'
+        }
+      }
+    );
+  }
+
+  function commonPostBody(url, data, token) {
+    return axios.post(
+      url,
+      data, {
+        headers: {
+          token: token
+        }
+      }
+    );
+  }
+
+  function commonGetPath(url, token) {
+    url += `?_t=${Date.now()}` // 加时间戳，防止ie取缓存
+    return axios.get(url, {
+      headers: {
+        token: token
+      }
+    });
+  }
   return {
     /*
      * axios get 请求
@@ -57,36 +88,49 @@ let createAxios = (baseURL, url) => {
         sessionStore.get('userInfo').token :
         '12222';
       // console.log(data, baseURL)
-      if (paramsType === 'params') {
+      if (paramsType === 'params' || !paramsType) {
         // param参数类型
+        url += paramsType ? '' : `?_t=${Date.now()}` // 加时间戳，防止ie取缓存
+        data = paramsType ? Object.assign({}, data, {
+          _t: Date.now()
+        }) : data
         return axios.get(url, {
-          params: data.params,
+          params: data,
           headers: {
             token: token
           }
         });
       }
       if (paramsType === 'orderPath') {
-        //  按顺序拼接
-        let orderPath = data.orderPath;
-        for (let key in orderPath) {
-          url += `/${orderPath[key]}`
-        }
-        return axios.get(url, {
-          headers: {
-            token: token
+        // 按顺序拼接到url上
+        if (Object.keys(data).length) {
+          for (let key in data) {
+            url += `/${data[key]}`
           }
-        });
+        }
+        return commonGetPath(url, token);
       }
       if (paramsType === 'locationPath') {
-        //  指定位置拼接
-        let locationPath = data.locationPath;
-        for (let key in locationPath) {
-          let reg = new RegExp(key, 'g');
-          url = url.replace(reg, locationPath[key])
+        //  指定位置拼接到url上
+        if (Object.keys(data).length) {
+          for (let key in data) {
+            let reg = new RegExp(key, 'g');
+            url = url.replace(reg, data[key])
+          }
         }
         // console.log(url)
+        return commonGetPath(url, token);
+      }
+      if (paramsType === 'getBlob') {
+        //  返回值为blob数据流
+        if (Object.keys(data).length) {
+          for (let key in data) {
+            url += `/${data[key]}`
+          }
+        }
+        url += `?_t=${Date.now()}` // 加时间戳，防止ie取缓存
         return axios.get(url, {
+          responseType: 'blob',
           headers: {
             token: token
           }
@@ -103,28 +147,48 @@ let createAxios = (baseURL, url) => {
         sessionStore.get('userInfo').token :
         '2222';
       console.log(paramsType)
-      if (paramsType === 'body') {
-        return axios.post(
-          url,
-          data.body, {
-            headers: {
-              token: token
-            }
-          }
-        );
+      if (paramsType === 'body' || !paramsType) {
+        return commonPostBody(url, data, token)
       }
-      // debugger
-      if (paramsType === 'formData') {
-        console.log(333)
-        return axios.post(
-          url,
-          data.fromData, {
-            headers: {
-              token: token,
-              "Content-Type": 'multipart/form-data'
-            }
+      // 除了本身的body为json格式，部分参数以/形式拼接到url上
+      if (paramsType === 'bodyPath') {
+        if (Object.keys(config).length) {
+          for (let key in config) {
+            url += `/${config[key]}`
           }
-        );
+        }
+        return commonPostBody(url, data, token)
+      }
+      // 除了本身的body为json格式，部分参数以?a=xx&b=yy形式拼接到url上
+      if (paramsType === 'bodyQuery') {
+        if (Object.keys(config).length) {
+          for (let key in config) {
+            url += url.indexOf('?') < 0 ? `?${key}=${config[key]}` : `&${key}=${config[key]}`
+          }
+        }
+        return commonPostBody(url, data, token)
+      }
+      // 只有formdata参数
+      if (paramsType === 'formData') {
+        return commonPostFormData(url, data, token);
+      }
+      // 除了formdata参数，部分参数以/形式拼接到url上
+      if (paramsType === 'formDataAndPath') {
+        if (Object.keys(config).length) {
+          for (let key in config) {
+            url += `/${config[key]}`
+          }
+        }
+        return commonPostFormData(url, data, token);
+      }
+      // 除了formdata参数，部分参数以?a=xx&b=yy形式拼接到url上
+      if (paramsType === 'formDataAndQuery') {
+        if (Object.keys(config).length) {
+          for (let key in config) {
+            url += url.indexOf('?') < 0 ? `?${key}=${config[key]}` : `&${key}=${config[key]}`
+          }
+        }
+        return commonPostFormData(url, data, token);
       }
     }
   };
