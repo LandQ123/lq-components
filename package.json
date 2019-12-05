@@ -5,9 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "crm": "vue-cli-service build --mode crm",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "@chenfengyuan/vue-qrcode": "^1.0.1",
     "@ckeditor/ckeditor5-build-decoupled-document": "^12.3.1",
     "@ckeditor/ckeditor5-paste-from-office": "^11.0.4",
@@ -40,11 +42,14 @@
     "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "compression-webpack-plugin": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
@@ -68,6 +73,7 @@
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions"
+    "last 2 versions",
+    "not ie <= 8"
   ]
 }

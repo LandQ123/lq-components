@@ -201,6 +201,7 @@ export default {
         },
         // 提交formData
         postFromdata(options) {
+            console.log(8888)
             let file = options.file;
             let formData = new FormData();
             formData.append('file', file);

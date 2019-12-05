@@ -3,7 +3,7 @@ export default {
         // console.log(el)
         // console.log(binding)
         el.addEventListener('click', function (e) {
-            console.log(555)
+            alert("click");
         })
     },
     update(el, binding) {

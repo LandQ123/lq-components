@@ -3,7 +3,12 @@
         <my-menu></my-menu>
         <div class="container">
             <el-scrollbar>
-                <router-view></router-view>
+                <keep-alive v-if="$route.meta.keepAlive">
+                    <router-view></router-view>
+                </keep-alive>
+                <keep-alive v-else>
+                    <router-view></router-view>
+                </keep-alive>
             </el-scrollbar>
         </div>
     </div>
@@ -14,14 +19,14 @@ import Menu from '@/components/menu';
 export default {
     name: 'home',
     components: {
-        'my-menu': Menu
+        'my-menu': Menu,
     },
     methods: {
         test() {
             let i = 0;
             let t = 'rrr';
-        }
-    }
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>

@@ -3,9 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
-import "@/assets/styles/common.scss";
+import "@styles/common.scss";
 import '@/service/reset-api';
 import ElementUI from 'element-ui';
+import '@babel/polyfill';
 import {
   message
 } from '@/utils/resetMessage';

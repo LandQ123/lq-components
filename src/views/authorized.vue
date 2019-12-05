@@ -1,8 +1,8 @@
 <!-- authorized -->
 <template>
     <div class="authorized">
-        <Authorized authName="admin">
-            <el-button type="primary" slot-scope="{ name }">{{
+        <Authorized authName="admin" #default="{ name }">
+            <el-button type="primary">{{
                 name
             }}</el-button>
         </Authorized>

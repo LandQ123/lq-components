@@ -36,10 +36,8 @@ const MESSAGE = {
                     })
                 }
             })
-            let newMessage = new VueMessage()
-            let vm = newMessage.$mount();
-            let el = vm.$el;
-            document.body.appendChild(el);
+            let vm = new VueMessage().$mount();
+            document.body.appendChild(vm.$el);
             vm.showMessage = true;
             let t1 = setTimeout(() => {
                 clearTimeout(t1)

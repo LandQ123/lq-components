@@ -2,7 +2,7 @@
     <div class="my-menu">
         <el-scrollbar>
             <el-menu
-                :default-active="this.$route.path"
+                :default-active="$route.meta.parentRouter ? $route.meta.parentRouter: $route.path"
                 router
                 class="el-menu-vertical-demo"
                 @open="handleOpen"

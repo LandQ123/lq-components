@@ -1,53 +1,61 @@
- const tipsMenu = [{
+ const tipsMenu = [
+     {
          router: '/debounce',
-         title: '防抖'
+         title: '防抖',
      },
      {
          router: '/throttle',
-         title: '节流'
+         title: '节流',
      },
      {
          router: '/dfs',
-         title: '深度遍历'
+         title: '深度遍历',
      },
      {
          router: '/flatArr',
-         title: '数组扁平化'
+         title: '数组扁平化',
      },
      {
          router: '/axios',
-         title: 'axios测试'
+         title: 'axios测试',
      },
      {
          router: '/axios-blob',
-         title: 'axios处理文件流'
+         title: 'axios处理文件流',
      },
      {
          router: '/arr-concat',
-         title: '数组排序'
+         title: '数组排序',
      },
      {
          router: '/css-tips',
-         title: 'css小技巧'
+         title: 'css小技巧',
      },
      {
          router: '/reset-message',
-         title: '重写message'
+         title: '重写message',
      },
      {
          router: '/extend',
-         title: 'extend写message'
+         title: 'extend写message',
      },
      {
          router: '/authorized',
-         title: '权限渲染'
+         title: '权限渲染',
+     },
+     {
+         router: '/keepAlive',
+         title: '缓存和滚动',
      },
      {
          router: '/directive',
-         title: '自定义指令'
+         title: '自定义指令',
      },
-
- ]
+     {
+         router: '/arry',
+         title: '数组相关方法',
+     },
+ ];
  const toolsMenu = [{
          router: '/js-zip',
          title: '下载压缩包'
