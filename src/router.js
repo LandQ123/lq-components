@@ -38,6 +38,14 @@ export default new Router({
                     },
                 },
                 {
+                    path: '/rewrite-apply',
+                    name: 'rewriteApply',
+                    component: () => import('@/views/rewriteApply'),
+                    meta: {
+                        name: '手写apply',
+                    },
+                },
+                {
                     path: '/flatArr',
                     name: 'FlatArr',
                     component: () => import('@/views/arrFlat'),

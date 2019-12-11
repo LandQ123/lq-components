@@ -9,7 +9,11 @@
      },
      {
          router: '/dfs',
-         title: '深度遍历',
+         title: '深度优先、广度优先遍历',
+     },
+     {
+         router: '/rewrite-apply',
+         title: '手写apply',
      },
      {
          router: '/flatArr',
