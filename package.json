@@ -22,6 +22,7 @@
     "file-saver": "^2.0.2",
     "jspdf": "^1.5.3",
     "jszip": "^3.2.2",
+    "leader-line": "^1.0.5",
     "lodash": "^4.17.15",
     "progressbar.js": "^1.0.1",
     "register-service-worker": "^1.6.2",
