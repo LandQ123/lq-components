@@ -1,15 +1,17 @@
 /**重置message，防止重复点击重复弹出message弹框 */
-import {
-    Message
-} from 'element-ui';
-const showMessage = Symbol('showMessage');
+import { Message } from 'element-ui';
+const showMessage = Symbol(
+    'showMessage',
+);
 let messageInstance = null;
 class DoneMessage {
     [showMessage](type, options, single) {
         if (messageInstance && single) {
-            messageInstance.close()
+            messageInstance.close();
         }
-        messageInstance = Message[type](options)
+        messageInstance = Message[type](
+            options,
+        );
         // if (single) {
         //     if (document.getElementsByClassName('el-message').length === 0) {
         //         Message[type](options)
@@ -17,19 +19,34 @@ class DoneMessage {
         // } else {
         //     Message[type](options)
         // }
-
     }
     info(options, single = true) {
-        this[showMessage]('info', options, single)
+        this[showMessage](
+            'info',
+            options,
+            single,
+        );
     }
     warning(options, single = true) {
-        this[showMessage]('warning', options, single)
+        this[showMessage](
+            'warning',
+            options,
+            single,
+        );
     }
     error(options, single = true) {
-        this[showMessage]('error', options, single)
+        this[showMessage](
+            'error',
+            options,
+            single,
+        );
     }
     success(options, single = true) {
-        this[showMessage]('success', options, single)
+        this[showMessage](
+            'success',
+            options,
+            single,
+        );
     }
 }
 export const message = new DoneMessage();
