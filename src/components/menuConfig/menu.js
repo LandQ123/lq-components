@@ -100,6 +100,10 @@ const toolsMenu = [{
         router: '/leader-line',
         title: 'js划线库',
     },
+    {
+        router: '/svg-line',
+        title: 'svg划线',
+    },
 ];
 export const menus = {
     tipsMenu,

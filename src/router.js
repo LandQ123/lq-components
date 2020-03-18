@@ -254,6 +254,14 @@ export default new Router({
                     name: 'leader-line',
                 },
             },
+            {
+                path: '/svg-line',
+                component: () =>
+                    import ('@/views/svg-line'),
+                meta: {
+                    name: 'svg-line',
+                },
+            },
         ],
     }, ],
     scrollBehavior(to, from, savedPosition) {

@@ -10,7 +10,9 @@
 import LeaderLine from '@/plugin/leader-line';
 export default {
 	data() {
-		return {};
+		return {
+			line: null,
+		};
 	},
 
 	components: {},
@@ -26,18 +28,22 @@ export default {
 			let start = document.getElementById('span1');
 			let end = document.getElementById('span2');
 
-			new LeaderLine(start, LeaderLine.pointAnchor(end, { x: 0, y: '45%' }), {
-				dash: { len: 14, gap: 4, animation: true },
-				color: '#2d79ec',
-				startPlug: 'arrow3',
-				endPlug: 'arrow3',
-				startPlugSize: 4,
-				endPlugSize: 4,
-				path: 'grid', // 折线
-				startSocket: 'right',
-				endSocket: 'left',
-				size: 2,
-			});
+			this.line = new LeaderLine(
+				start,
+				LeaderLine.pointAnchor(end, { x: 0, y: '45%' }),
+				{
+					dash: { len: 14, gap: 4, animation: true },
+					color: '#2d79ec',
+					startPlug: 'arrow3',
+					endPlug: 'arrow3',
+					startPlugSize: 4,
+					endPlugSize: 4,
+					path: 'grid', // 折线
+					startSocket: 'right',
+					endSocket: 'left',
+					size: 2,
+				},
+			);
 		},
 	},
 };
