@@ -20,11 +20,11 @@
         stroke="red"
       />
       <path d="
-  M180 100
-  L170 120
-  L160 100
+  M190 360
+  L200 380
+  L210 360
   Z
-" fill="#ccc" />
+" fill="blue" />
       <path
         d="
   M40 100
