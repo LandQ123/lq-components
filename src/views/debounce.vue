@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-20 16:36:31
+ * @LastEditTime: 2020-06-29 18:03:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \lq-components\src\views\debounce.vue
+--> 
 <template>
     <div class="debounce">
         <p>
@@ -12,6 +20,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
     name: 'debounce',
     data() {
@@ -20,6 +29,9 @@ export default {
             value: '',
             timeOut: null
         };
+    },
+    mounted() {
+        console.log(moment('2020-6-29').format('yyyy 第 WW 周'))
     },
     methods: {
         handleInp(e) {
