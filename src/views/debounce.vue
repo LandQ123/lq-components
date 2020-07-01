@@ -32,6 +32,8 @@ export default {
     },
     mounted() {
         console.log(moment('2020-6-29').format('yyyy 第 WW 周'))
+        console.log(666)
+        // 回滚测试
     },
     methods: {
         handleInp(e) {
