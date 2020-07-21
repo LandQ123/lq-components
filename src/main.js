@@ -15,6 +15,7 @@ import VueQrcode from '@chenfengyuan/vue-qrcode';
 import diyMessage from '@/components/message'; // extentd写message
 import diyAlert from '@/components/alert/alert'; // extentd写alert
 import Authorized from '@/components/authorized'; // 权限
+console.log(Authorized)
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI)

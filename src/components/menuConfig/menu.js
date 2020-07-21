@@ -31,6 +31,10 @@ const tipsMenu = [{
         title: '数组排序',
     },
     {
+        router: '/auto-popover',
+        title: '自动泡泡',
+    },
+    {
         router: '/css-tips',
         title: 'css小技巧',
     },

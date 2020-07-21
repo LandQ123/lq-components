@@ -103,6 +103,15 @@ export default new Router({
                 },
             },
             {
+                path: '/auto-popover',
+                name: '自动泡泡',
+                component: () =>
+                    import ('@/views/autoPopover'),
+                meta: {
+                    name: '自动泡泡',
+                },
+            },
+            {
                 path: '/js-zip',
                 name: '下载压缩包',
                 component: () =>

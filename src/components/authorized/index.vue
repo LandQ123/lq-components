@@ -13,6 +13,7 @@ export default {
     },
     render(h, context) {
         let { props, scopedSlots } = context;
+        console.log(scopedSlots)
         return checkAuthorized(props.authName)
             ? scopedSlots.default({
                   name: props.authName
