@@ -21,7 +21,7 @@
     "core-js": "^2.6.5",
     "element-ui": "^2.9.1",
     "file-saver": "^2.0.2",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jszip": "^3.2.2",
     "leader-line": "^1.0.5",
     "lodash": "^4.17.15",
