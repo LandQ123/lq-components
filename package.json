@@ -30,7 +30,7 @@
     "register-service-worker": "^1.6.2",
     "script-loader": "^0.7.2",
     "sortablejs": "^1.10.1",
-    "tinymce": "^5.0.12",
+    "tinymce": "^5.7.1",
     "vue": "^2.6.10",
     "vue-draggable-resizable": "^2.0.1",
     "vue-qriously": "^1.1.1",
